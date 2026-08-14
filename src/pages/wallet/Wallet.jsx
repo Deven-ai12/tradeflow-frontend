@@ -164,7 +164,7 @@ const Wallet = () => {
   // =========================
   if (loading) {
     return (
-      <div className="p-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         Loading wallet...
       </div>
     );
@@ -174,25 +174,69 @@ const Wallet = () => {
   // UI
   // =========================
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="
+      w-full
+      max-w-4xl
+      mx-auto
+      px-4
+      sm:px-6
+      lg:px-8
+      py-6
+      sm:py-8
+    ">
 
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="
+        flex
+        flex-col
+        sm:flex-row
+        sm:justify-between
+        sm:items-center
+        gap-4
+        mb-6
+        sm:mb-8
+      ">
 
-        <div>
-          <h1 className="text-3xl font-bold text-blue-600">
+        <div className="min-w-0">
+
+          <h1 className="
+            text-2xl
+            sm:text-3xl
+            font-bold
+            text-blue-600
+          ">
             My Wallet
           </h1>
 
-          <p className="text-gray-500 mt-1">
+          <p className="
+            text-sm
+            sm:text-base
+            text-gray-500
+            mt-1
+          ">
             Manage your trading balance
           </p>
+
         </div>
 
         <button
           onClick={loadWallet}
           disabled={loading}
-          className="border px-4 py-2 rounded-lg hover:bg-gray-100"
+          className="
+            w-full
+            sm:w-auto
+            border
+            px-4
+            py-2.5
+            rounded-lg
+            hover:bg-gray-100
+            text-sm
+            sm:text-base
+            font-medium
+            transition
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+          "
         >
           Refresh
         </button>
@@ -201,26 +245,67 @@ const Wallet = () => {
 
       {/* ERROR */}
       {error && (
-        <div className="mb-6 p-4 bg-red-100 text-red-600 rounded-lg">
+        <div className="
+          mb-5
+          sm:mb-6
+          p-3
+          sm:p-4
+          bg-red-100
+          text-red-600
+          rounded-lg
+          text-sm
+          sm:text-base
+          break-words
+        ">
           {error}
         </div>
       )}
 
       {/* SUCCESS */}
       {message && (
-        <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+        <div className="
+          mb-5
+          sm:mb-6
+          p-3
+          sm:p-4
+          bg-green-100
+          text-green-700
+          rounded-lg
+          text-sm
+          sm:text-base
+          break-words
+        ">
           {message}
         </div>
       )}
 
       {/* BALANCE */}
-      <div className="border rounded-xl p-8 bg-gray-50 mb-8">
+      <div className="
+        border
+        rounded-xl
+        p-5
+        sm:p-8
+        bg-gray-50
+        mb-6
+        sm:mb-8
+      ">
 
-        <p className="text-gray-500">
+        <p className="
+          text-sm
+          sm:text-base
+          text-gray-500
+        ">
           Available Balance
         </p>
 
-        <h2 className="text-4xl font-bold text-blue-600 mt-2">
+        <h2 className="
+          text-3xl
+          sm:text-4xl
+          font-bold
+          text-blue-600
+          mt-2
+          break-all
+        ">
           ₹
           {Number(
             wallet?.balance || 0
@@ -228,7 +313,13 @@ const Wallet = () => {
         </h2>
 
         {wallet?.firstName && (
-          <p className="text-gray-500 mt-2">
+          <p className="
+            text-sm
+            sm:text-base
+            text-gray-500
+            mt-2
+            break-words
+          ">
             Account: {wallet.firstName}{" "}
             {wallet.lastName}
           </p>
@@ -237,13 +328,29 @@ const Wallet = () => {
       </div>
 
       {/* TRANSACTION */}
-      <div className="border rounded-xl p-6">
+      <div className="
+        border
+        rounded-xl
+        p-4
+        sm:p-6
+      ">
 
-        <h2 className="text-xl font-semibold mb-5">
+        <h2 className="
+          text-lg
+          sm:text-xl
+          font-semibold
+          mb-5
+        ">
           Wallet Transaction
         </h2>
 
-        <label className="block font-semibold mb-2">
+        <label className="
+          block
+          font-semibold
+          text-sm
+          sm:text-base
+          mb-2
+        ">
           Amount
         </label>
 
@@ -257,15 +364,49 @@ const Wallet = () => {
           }
           placeholder="Enter amount"
           disabled={transactionLoading}
-          className="w-full border rounded-lg px-4 py-3 mb-5"
+          className="
+            w-full
+            border
+            rounded-lg
+            px-4
+            py-3
+            mb-5
+            text-sm
+            sm:text-base
+            outline-none
+            focus:ring-2
+            focus:ring-blue-500
+            disabled:bg-gray-100
+            disabled:cursor-not-allowed
+          "
         />
 
-        <div className="flex gap-4">
+        <div className="
+          flex
+          flex-col
+          sm:flex-row
+          gap-3
+          sm:gap-4
+        ">
 
           <button
             onClick={handleDeposit}
             disabled={transactionLoading}
-            className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold disabled:opacity-50"
+            className="
+              w-full
+              sm:flex-1
+              bg-green-600
+              hover:bg-green-700
+              text-white
+              py-3
+              rounded-lg
+              font-semibold
+              text-sm
+              sm:text-base
+              disabled:opacity-50
+              disabled:cursor-not-allowed
+              transition
+            "
           >
             {transactionLoading
               ? "PROCESSING..."
@@ -275,7 +416,21 @@ const Wallet = () => {
           <button
             onClick={handleWithdraw}
             disabled={transactionLoading}
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold disabled:opacity-50"
+            className="
+              w-full
+              sm:flex-1
+              bg-red-600
+              hover:bg-red-700
+              text-white
+              py-3
+              rounded-lg
+              font-semibold
+              text-sm
+              sm:text-base
+              disabled:opacity-50
+              disabled:cursor-not-allowed
+              transition
+            "
           >
             {transactionLoading
               ? "PROCESSING..."

@@ -95,9 +95,9 @@ function Dashboard() {
 
         return (
 
-            <div className="p-8">
+            <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
 
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-xl sm:text-2xl font-bold">
                     Loading Dashboard...
                 </h2>
 
@@ -116,7 +116,7 @@ function Dashboard() {
 
         return (
 
-            <div className="p-8">
+            <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
 
                 <div className="bg-red-100 text-red-700 p-4 rounded-lg">
 
@@ -126,7 +126,7 @@ function Dashboard() {
 
                 <button
                     onClick={handleRefresh}
-                    className="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+                    className="mt-4 w-full sm:w-auto bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition"
                 >
                     Try Again
                 </button>
@@ -146,9 +146,9 @@ function Dashboard() {
 
         return (
 
-            <div className="p-8">
+            <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
 
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-xl sm:text-2xl font-bold">
                     No dashboard data available.
                 </h2>
 
@@ -165,22 +165,22 @@ function Dashboard() {
 
     return (
 
-        <div className="p-8">
+        <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
 
 
             {/* =========================
                 HEADER
             ========================= */}
 
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
 
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                         Dashboard
                     </h1>
 
-                    <p className="text-gray-500 mt-2">
+                    <p className="text-sm sm:text-base text-gray-500 mt-1 sm:mt-2">
                         Welcome to TradeFlow
                     </p>
 
@@ -190,7 +190,7 @@ function Dashboard() {
                 <button
                     onClick={handleRefresh}
                     disabled={refreshing}
-                    className="border px-5 py-2 rounded-lg hover:bg-gray-100 disabled:opacity-50"
+                    className="w-full sm:w-auto border px-5 py-2.5 rounded-lg hover:bg-gray-100 disabled:opacity-50 transition"
                 >
 
                     {refreshing
@@ -206,21 +206,21 @@ function Dashboard() {
                 MAIN FINANCIAL CARDS
             ========================= */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mt-6 sm:mt-8">
 
 
                 {/* WALLET */}
 
                 <Link
                     to="/wallet"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Wallet Balance
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         ₹
                         {Number(
                             dashboard.walletBalance || 0
@@ -238,14 +238,14 @@ function Dashboard() {
 
                 <Link
                     to="/portfolio"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Invested Amount
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         ₹
                         {Number(
                             dashboard.investedAmount || 0
@@ -263,14 +263,14 @@ function Dashboard() {
 
                 <Link
                     to="/portfolio"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Portfolio Value
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         ₹
                         {Number(
                             dashboard.portfolioValue || 0
@@ -288,7 +288,7 @@ function Dashboard() {
 
                 <Link
                     to="/portfolio"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
@@ -325,21 +325,21 @@ function Dashboard() {
                 STATISTICS
             ========================= */}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mt-5 sm:mt-6">
 
 
                 {/* HOLDINGS */}
 
                 <Link
                     to="/portfolio"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Total Holdings
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         {dashboard.totalHoldings || 0}
                     </h2>
 
@@ -354,14 +354,14 @@ function Dashboard() {
 
                 <Link
                     to="/transactions"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Total Transactions
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         {dashboard.totalTransactions || 0}
                     </h2>
 
@@ -376,14 +376,14 @@ function Dashboard() {
 
                 <Link
                     to="/watchlist"
-                    className="bg-white shadow rounded-xl p-6 hover:shadow-lg transition"
+                    className="bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 hover:shadow-lg transition min-w-0"
                 >
 
                     <p className="text-gray-500">
                         Watchlist
                     </p>
 
-                    <h2 className="text-3xl font-bold mt-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold mt-2 break-words">
                         {dashboard.watchlistCount || 0}
                     </h2>
 
@@ -400,24 +400,24 @@ function Dashboard() {
                 QUICK ACTIONS
             ========================= */}
 
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
 
-                <h2 className="text-2xl font-bold mb-5">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-5">
                     Quick Actions
                 </h2>
 
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
 
 
                     {/* STOCKS */}
 
                     <Link
                         to="/stocks"
-                        className="bg-blue-600 text-white rounded-xl p-6 hover:bg-blue-700 transition"
+                        className="bg-blue-600 text-white rounded-xl p-5 sm:p-6 hover:bg-blue-700 transition min-h-[160px]"
                     >
 
-                        <h3 className="text-xl font-bold">
+                        <h3 className="text-lg sm:text-xl font-bold">
                             Browse Stocks
                         </h3>
 
@@ -436,10 +436,10 @@ function Dashboard() {
 
                     <Link
                         to="/trading"
-                        className="bg-green-600 text-white rounded-xl p-6 hover:bg-green-700 transition"
+                        className="bg-green-600 text-white rounded-xl p-5 sm:p-6 hover:bg-green-700 transition min-h-[160px]"
                     >
 
-                        <h3 className="text-xl font-bold">
+                        <h3 className="text-lg sm:text-xl font-bold">
                             Start Trading
                         </h3>
 
@@ -458,10 +458,10 @@ function Dashboard() {
 
                     <Link
                         to="/watchlist"
-                        className="bg-purple-600 text-white rounded-xl p-6 hover:bg-purple-700 transition"
+                        className="bg-purple-600 text-white rounded-xl p-5 sm:p-6 hover:bg-purple-700 transition min-h-[160px]"
                     >
 
-                        <h3 className="text-xl font-bold">
+                        <h3 className="text-lg sm:text-xl font-bold">
                             My Watchlist
                         </h3>
 
@@ -484,14 +484,14 @@ function Dashboard() {
                 ACCOUNT OVERVIEW
             ========================= */}
 
-            <div className="mt-8 bg-white shadow rounded-xl p-6">
+            <div className="mt-6 sm:mt-8 bg-white shadow-sm rounded-xl p-4 sm:p-5 lg:p-6 overflow-hidden">
 
-                <h2 className="text-xl font-bold mb-5">
+                <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-5">
                     Account Overview
                 </h2>
 
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
 
 
                     <div>
@@ -500,7 +500,7 @@ function Dashboard() {
                             Available Cash
                         </p>
 
-                        <p className="text-xl font-bold mt-1">
+                        <p className="text-lg sm:text-xl font-bold mt-1 break-words">
                             ₹
                             {Number(
                                 dashboard.walletBalance || 0
@@ -516,7 +516,7 @@ function Dashboard() {
                             Invested
                         </p>
 
-                        <p className="text-xl font-bold mt-1">
+                        <p className="text-lg sm:text-xl font-bold mt-1 break-words">
                             ₹
                             {Number(
                                 dashboard.investedAmount || 0
@@ -532,7 +532,7 @@ function Dashboard() {
                             Portfolio Value
                         </p>
 
-                        <p className="text-xl font-bold mt-1">
+                        <p className="text-lg sm:text-xl font-bold mt-1 break-words">
                             ₹
                             {Number(
                                 dashboard.portfolioValue || 0

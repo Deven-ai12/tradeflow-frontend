@@ -5,7 +5,6 @@ import watchlistService from "../../services/watchlistService";
 import { useNavigate } from "react-router-dom";
 
 const Stocks = () => {
-
     const navigate = useNavigate();
 
     const [search, setSearch] = useState("");
@@ -22,14 +21,12 @@ const Stocks = () => {
     // =========================
 
     const searchStock = async () => {
-
         if (!search.trim()) {
             setError("Please enter a stock symbol.");
             return;
         }
 
         try {
-
             setLoading(true);
             setError("");
             setMessage("");
@@ -42,9 +39,7 @@ const Stocks = () => {
             console.log("Stock Response:", data);
 
             setStock(data);
-
         } catch (error) {
-
             console.error("STOCK SEARCH ERROR:", error);
 
             setError(
@@ -52,28 +47,22 @@ const Stocks = () => {
                 error.response?.data?.error ||
                 "Stock not found."
             );
-
         } finally {
-
             setLoading(false);
-
         }
     };
-
 
     // =========================
     // ADD TO WATCHLIST
     // =========================
 
     const handleAddToWatchlist = async () => {
-
         if (!stock?.symbol) {
             setError("Please search for a stock first.");
             return;
         }
 
         try {
-
             setWatchlistLoading(true);
             setError("");
             setMessage("");
@@ -83,18 +72,13 @@ const Stocks = () => {
                     stock.symbol
                 );
 
-            console.log(
-                "Watchlist Response:",
-                response
-            );
+            console.log("Watchlist Response:", response);
 
             setMessage(
                 response ||
                 `${stock.symbol} added to watchlist.`
             );
-
         } catch (error) {
-
             console.error(
                 "WATCHLIST ERROR:",
                 error
@@ -105,47 +89,46 @@ const Stocks = () => {
                 error.response?.data?.error ||
                 "Unable to add stock to watchlist."
             );
-
         } finally {
-
             setWatchlistLoading(false);
-
         }
     };
-
 
     // =========================
     // UI
     // =========================
 
     return (
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
-        <div className="max-w-6xl mx-auto p-6">
+            {/* =========================
+                HEADER
+            ========================= */}
 
-            {/* HEADER */}
+            <div className="mb-6 sm:mb-8">
 
-            <div className="mb-8">
-
-                <h1 className="text-3xl font-bold text-blue-600">
+                <h1 className="text-2xl sm:text-3xl font-bold text-blue-600">
                     Stocks
                 </h1>
 
-                <p className="text-gray-500 mt-1">
+                <p className="text-sm sm:text-base text-gray-500 mt-1">
                     Search stocks and explore market information
                 </p>
 
             </div>
 
 
-            {/* SEARCH */}
+            {/* =========================
+                SEARCH
+            ========================= */}
 
-            <div className="mb-6">
+            <div className="mb-5 sm:mb-6">
 
-                <label className="block font-semibold mb-2">
+                <label className="block font-semibold text-sm sm:text-base mb-2">
                     Search Stock
                 </label>
 
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
 
                     <input
                         type="text"
@@ -154,20 +137,45 @@ const Stocks = () => {
                             setSearch(e.target.value)
                         }
                         onKeyDown={(e) => {
-
                             if (e.key === "Enter") {
                                 searchStock();
                             }
-
                         }}
-                        placeholder="TCS / INFY / RELIANCE"
-                        className="flex-1 border rounded-lg px-4 py-3"
+                        placeholder="AAPL / NVDA"
+                        className="
+                            w-full
+                            flex-1
+                            border border-gray-300
+                            rounded-lg
+                            px-4
+                            py-3
+                            text-sm sm:text-base
+                            outline-none
+                            focus:ring-2
+                            focus:ring-blue-500
+                            focus:border-blue-500
+                        "
                     />
 
                     <button
                         onClick={searchStock}
                         disabled={loading}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-semibold disabled:opacity-50"
+                        className="
+                            w-full
+                            sm:w-auto
+                            min-w-[120px]
+                            bg-blue-600
+                            hover:bg-blue-700
+                            text-white
+                            px-6
+                            py-3
+                            rounded-lg
+                            font-semibold
+                            text-sm sm:text-base
+                            disabled:opacity-50
+                            disabled:cursor-not-allowed
+                            transition
+                        "
                     >
                         {loading
                             ? "SEARCHING..."
@@ -179,49 +187,94 @@ const Stocks = () => {
             </div>
 
 
-            {/* ERROR */}
+            {/* =========================
+                ERROR
+            ========================= */}
 
             {error && (
-
-                <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+                <div className="
+                    mb-5 sm:mb-6
+                    p-4
+                    bg-red-100
+                    text-red-700
+                    rounded-lg
+                    text-sm sm:text-base
+                    break-words
+                ">
                     {error}
                 </div>
-
             )}
 
 
-            {/* SUCCESS */}
+            {/* =========================
+                SUCCESS
+            ========================= */}
 
             {message && (
-
-                <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+                <div className="
+                    mb-5 sm:mb-6
+                    p-4
+                    bg-green-100
+                    text-green-700
+                    rounded-lg
+                    text-sm sm:text-base
+                    break-words
+                ">
                     {message}
                 </div>
-
             )}
 
 
-            {/* STOCK INFORMATION */}
+            {/* =========================
+                STOCK INFORMATION
+            ========================= */}
 
             {stock && (
+                <div className="
+                    bg-white
+                    border
+                    rounded-xl
+                    shadow-sm
+                    p-4 sm:p-6
+                ">
 
-                <div className="bg-white border rounded-xl shadow-sm p-6">
+                    {/* =========================
+                        STOCK HEADER
+                    ========================= */}
 
-                    {/* Stock Header */}
+                    <div className="
+                        flex
+                        flex-col
+                        sm:flex-row
+                        sm:justify-between
+                        sm:items-start
+                        gap-4
+                    ">
 
-                    <div className="flex justify-between items-start">
+                        {/* Stock Details */}
 
-                        <div>
+                        <div className="min-w-0">
 
-                            <p className="text-sm text-gray-500">
+                            <p className="text-xs sm:text-sm text-gray-500">
                                 Stock
                             </p>
 
-                            <h2 className="text-3xl font-bold">
+                            <h2 className="
+                                text-2xl
+                                sm:text-3xl
+                                font-bold
+                                break-words
+                            ">
                                 {stock.symbol}
                             </h2>
 
-                            <p className="text-gray-600 mt-1">
+                            <p className="
+                                text-sm
+                                sm:text-base
+                                text-gray-600
+                                mt-1
+                                break-words
+                            ">
                                 {stock.companyName ||
                                     "Company name unavailable"}
                             </p>
@@ -231,13 +284,22 @@ const Stocks = () => {
 
                         {/* Current Price */}
 
-                        <div className="text-right">
+                        <div className="
+                            text-left
+                            sm:text-right
+                            shrink-0
+                        ">
 
-                            <p className="text-sm text-gray-500">
+                            <p className="text-xs sm:text-sm text-gray-500">
                                 Current Price
                             </p>
 
-                            <p className="text-3xl font-bold text-blue-600">
+                            <p className="
+                                text-2xl
+                                sm:text-3xl
+                                font-bold
+                                text-blue-600
+                            ">
                                 ₹
                                 {Number(
                                     stock.currentPrice || 0
@@ -249,19 +311,35 @@ const Stocks = () => {
                     </div>
 
 
-                    {/* MARKET INFORMATION */}
+                    {/* =========================
+                        MARKET INFORMATION
+                    ========================= */}
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                    <div className="
+                        grid
+                        grid-cols-1
+                        sm:grid-cols-2
+                        lg:grid-cols-3
+                        gap-3
+                        sm:gap-4
+                        mt-6
+                        sm:mt-8
+                    ">
 
                         {/* Previous Close */}
 
-                        <div className="bg-gray-50 rounded-lg p-5">
+                        <div className="
+                            bg-gray-50
+                            rounded-lg
+                            p-4
+                            sm:p-5
+                        ">
 
-                            <p className="text-gray-500">
+                            <p className="text-sm text-gray-500">
                                 Previous Close
                             </p>
 
-                            <p className="text-xl font-bold mt-2">
+                            <p className="text-lg sm:text-xl font-bold mt-2">
                                 ₹
                                 {Number(
                                     stock.previousClose || 0
@@ -273,13 +351,24 @@ const Stocks = () => {
 
                         {/* Day High */}
 
-                        <div className="bg-gray-50 rounded-lg p-5">
+                        <div className="
+                            bg-gray-50
+                            rounded-lg
+                            p-4
+                            sm:p-5
+                        ">
 
-                            <p className="text-gray-500">
+                            <p className="text-sm text-gray-500">
                                 Day High
                             </p>
 
-                            <p className="text-xl font-bold text-green-600 mt-2">
+                            <p className="
+                                text-lg
+                                sm:text-xl
+                                font-bold
+                                text-green-600
+                                mt-2
+                            ">
                                 ₹
                                 {Number(
                                     stock.dayHigh || 0
@@ -291,13 +380,24 @@ const Stocks = () => {
 
                         {/* Day Low */}
 
-                        <div className="bg-gray-50 rounded-lg p-5">
+                        <div className="
+                            bg-gray-50
+                            rounded-lg
+                            p-4
+                            sm:p-5
+                        ">
 
-                            <p className="text-gray-500">
+                            <p className="text-sm text-gray-500">
                                 Day Low
                             </p>
 
-                            <p className="text-xl font-bold text-red-600 mt-2">
+                            <p className="
+                                text-lg
+                                sm:text-xl
+                                font-bold
+                                text-red-600
+                                mt-2
+                            ">
                                 ₹
                                 {Number(
                                     stock.dayLow || 0
@@ -309,30 +409,61 @@ const Stocks = () => {
                     </div>
 
 
-                    {/* LAST UPDATED */}
+                    {/* =========================
+                        LAST UPDATED
+                    ========================= */}
 
                     {stock.lastUpdated && (
-
-                        <p className="text-sm text-gray-500 mt-6">
+                        <p className="
+                            text-xs
+                            sm:text-sm
+                            text-gray-500
+                            mt-5
+                            sm:mt-6
+                            break-words
+                        ">
                             Last Updated:{" "}
                             {new Date(
                                 stock.lastUpdated
                             ).toLocaleString()}
                         </p>
-
                     )}
 
 
-                    {/* ACTIONS */}
+                    {/* =========================
+                        ACTIONS
+                    ========================= */}
 
-                    <div className="flex gap-4 mt-8">
+                    <div className="
+                        flex
+                        flex-col
+                        sm:flex-row
+                        gap-3
+                        sm:gap-4
+                        mt-6
+                        sm:mt-8
+                    ">
 
                         {/* WATCHLIST */}
 
                         <button
                             onClick={handleAddToWatchlist}
                             disabled={watchlistLoading}
-                            className="flex-1 border border-yellow-500 text-yellow-600 hover:bg-yellow-50 py-3 rounded-lg font-semibold disabled:opacity-50"
+                            className="
+                                w-full
+                                sm:flex-1
+                                border
+                                border-yellow-500
+                                text-yellow-600
+                                hover:bg-yellow-50
+                                py-3
+                                rounded-lg
+                                font-semibold
+                                text-sm sm:text-base
+                                disabled:opacity-50
+                                disabled:cursor-not-allowed
+                                transition
+                            "
                         >
                             {watchlistLoading
                                 ? "ADDING..."
@@ -348,7 +479,18 @@ const Stocks = () => {
                                     `/trading?symbol=${stock.symbol}`
                                 )
                             }
-                            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold"
+                            className="
+                                w-full
+                                sm:flex-1
+                                bg-blue-600
+                                hover:bg-blue-700
+                                text-white
+                                py-3
+                                rounded-lg
+                                font-semibold
+                                text-sm sm:text-base
+                                transition
+                            "
                         >
                             Trade
                         </button>
@@ -356,11 +498,9 @@ const Stocks = () => {
                     </div>
 
                 </div>
-
             )}
 
         </div>
-
     );
 };
 

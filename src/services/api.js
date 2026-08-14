@@ -11,7 +11,11 @@ api.interceptors.request.use((config) => {
 
     const token = localStorage.getItem("token");
 
-    if (token) {
+    // Don't send JWT for public authentication endpoints
+    const isPublicEndpoint =
+        config.url?.startsWith("/auth/");
+
+    if (token && !isPublicEndpoint) {
         config.headers.Authorization = `Bearer ${token}`;
     }
 

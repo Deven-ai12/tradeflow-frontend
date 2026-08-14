@@ -14,6 +14,7 @@ import Transactions from "../pages/transactions/Transactions";
 import Wallet from "../pages/wallet/Wallet";
 import Watchlist from "../pages/watchlist/Watchlist";
 import Profile from "../pages/profile/Profile";
+import VerifyEmail from "../pages/auth/VerifyEmail";
 
 const AppRoutes = () => {
 
@@ -36,6 +37,11 @@ const AppRoutes = () => {
             <Route
                 path="/register"
                 element={<Register />}
+            />
+
+            <Route
+                path="/verify-email"
+                element={<VerifyEmail />}
             />
 
 
