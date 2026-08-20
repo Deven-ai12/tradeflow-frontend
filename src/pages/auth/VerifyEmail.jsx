@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import api from "../../services/api";
 
@@ -10,7 +10,15 @@ const VerifyEmail = () => {
     const [status, setStatus] = useState("loading");
     const [message, setMessage] = useState("");
 
+    const verificationStarted = useRef(false);
+
     useEffect(() => {
+
+        if (verificationStarted.current) {
+            return;
+        }
+
+        verificationStarted.current = true;
 
         const verifyEmail = async () => {
 
@@ -22,11 +30,16 @@ const VerifyEmail = () => {
 
             try {
 
+                console.log("VERIFYING TOKEN:", token);
+
                 const response = await api.get(
                     `/auth/verify?token=${encodeURIComponent(token)}`
                 );
 
+                console.log("VERIFICATION SUCCESS:", response.data);
+
                 setStatus("success");
+
                 setMessage(
                     response.data ||
                     "Your email has been verified successfully."
@@ -44,7 +57,7 @@ const VerifyEmail = () => {
                 setMessage(
                     error.response?.data?.message ||
                     error.response?.data ||
-                    "Email verification failed. The link may be invalid or expired."
+                    "Email verification failed."
                 );
             }
         };
@@ -59,10 +72,7 @@ const VerifyEmail = () => {
 
             <div className="w-full max-w-md bg-white border rounded-2xl shadow-sm p-8 text-center">
 
-                {/* LOADING */}
-
                 {status === "loading" && (
-
                     <>
                         <div className="text-4xl mb-4">
                             ⏳
@@ -76,13 +86,9 @@ const VerifyEmail = () => {
                             Please wait while we verify your email address...
                         </p>
                     </>
-
                 )}
 
-                {/* SUCCESS */}
-
                 {status === "success" && (
-
                     <>
                         <div className="text-5xl mb-4">
                             ✅
@@ -103,13 +109,9 @@ const VerifyEmail = () => {
                             Go to Login
                         </Link>
                     </>
-
                 )}
 
-                {/* ERROR */}
-
                 {status === "error" && (
-
                     <>
                         <div className="text-5xl mb-4">
                             ❌
@@ -130,7 +132,6 @@ const VerifyEmail = () => {
                             Go to Login
                         </Link>
                     </>
-
                 )}
 
             </div>
