@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
 
     // Don't send JWT for public authentication endpoints
     const isPublicEndpoint =
-        config.url?.startsWith("/auth/");
+        config.url?.startsWith("/api/auth/");
 
     if (token && !isPublicEndpoint) {
         config.headers.Authorization = `Bearer ${token}`;
