@@ -4,7 +4,7 @@ const portfolioService = {
 
     getPortfolio: async () => {
 
-        const response = await api.get("/portfolio");
+        const response = await api.get("/api/portfolio");
 
         return response.data;
     }

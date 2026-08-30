@@ -4,7 +4,7 @@ const userService = {
 
     getProfile: async () => {
 
-        const response = await api.get("/api/users/me");
+        const response = await api.get("/users/me");
 
         return response.data;
     }

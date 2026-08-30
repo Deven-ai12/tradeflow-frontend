@@ -22,7 +22,7 @@ const deposit = async (amount) => {
 const withdraw = async (amount) => {
 
     const response = await api.post(
-        "/api/wallet/withdraw",
+        "/wallet/withdraw",
         {
             amount: Number(amount),
         }
