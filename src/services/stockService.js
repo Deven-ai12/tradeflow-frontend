@@ -5,7 +5,7 @@ const stockService = {
     getStock: async (symbol) => {
 
         const response = await api.get(
-            `/stocks/${symbol}`
+            `/api/stocks/${symbol}`
         );
 
         return response.data;
