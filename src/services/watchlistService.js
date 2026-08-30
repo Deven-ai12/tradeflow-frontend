@@ -3,12 +3,12 @@ import api from "../api/axios";
 const watchlistService = {
 
     getWatchlist: async () => {
-        const response = await api.get("/watchlist");
+        const response = await api.get("/api/watchlist");
         return response.data;
     },
 
     addToWatchlist: async (symbol) => {
-        const response = await api.post("/watchlist", {
+        const response = await api.post("/api/watchlist", {
             symbol: symbol,
         });
 
@@ -17,7 +17,7 @@ const watchlistService = {
 
     removeFromWatchlist: async (symbol) => {
         const response = await api.delete(
-            `/watchlist/${symbol}`
+            `/api/watchlist/${symbol}`
         );
 
         return response.data;

@@ -9,7 +9,7 @@ const getTransactions = async ({
     toDate = ""
 } = {}) => {
 
-    const response = await api.get("/transactions", {
+    const response = await api.get("/api/transactions", {
         params: {
             page,
             size,

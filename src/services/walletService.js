@@ -2,7 +2,7 @@ import api from "../api/axios";
 
 const getWallet = async () => {
 
-    const response = await api.get("/wallet");
+    const response = await api.get("/api/wallet");
 
     return response.data;
 };
@@ -10,7 +10,7 @@ const getWallet = async () => {
 const deposit = async (amount) => {
 
     const response = await api.post(
-        "/wallet/deposit",
+        "/api/wallet/deposit",
         {
             amount: Number(amount),
         }
@@ -22,7 +22,7 @@ const deposit = async (amount) => {
 const withdraw = async (amount) => {
 
     const response = await api.post(
-        "/wallet/withdraw",
+        "/api/wallet/withdraw",
         {
             amount: Number(amount),
         }

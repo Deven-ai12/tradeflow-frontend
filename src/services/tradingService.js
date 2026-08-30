@@ -3,7 +3,7 @@ import api from "../api/axios";
 export const buyStock = async (symbol, quantity) => {
 
     const response = await api.post(
-        "/trading/buy",
+        "/api/trading/buy",
         {
             symbol: symbol.toUpperCase(),
             quantity: Number(quantity),
@@ -16,7 +16,7 @@ export const buyStock = async (symbol, quantity) => {
 export const sellStock = async (symbol, quantity) => {
 
     const response = await api.post(
-        "/trading/sell",
+        "/api/trading/sell",
         {
             symbol: symbol.toUpperCase(),
             quantity: Number(quantity),
