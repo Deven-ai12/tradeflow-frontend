@@ -1,19 +1,23 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: `${import.meta.env.VITE_API_URL}/api`,
     headers: {
-        "Content-Type": "application/json",
-    },
+        "Content-Type": "application/json"
+    }
 });
 
 api.interceptors.request.use((config) => {
 
     const token = localStorage.getItem("token");
 
-    // Don't send JWT for public authentication endpoints
-    const isPublicEndpoint =
-        config.url?.startsWith("/api/auth/");
+    const publicEndpoints = [
+        "/auth/login",
+        "/auth/register",
+        "/auth/verify"
+    ];
+
+    const isPublicEndpoint = publicEndpoints.includes(config.url);
 
     if (token && !isPublicEndpoint) {
         config.headers.Authorization = `Bearer ${token}`;
