@@ -33,7 +33,7 @@ const VerifyEmail = () => {
                 console.log("VERIFYING TOKEN:", token);
 
                 const response = await api.get(
-                    `/api/auth/verify?token=${encodeURIComponent(token)}`
+                    `/auth/verify?token=${encodeURIComponent(token)}`
                 );
 
                 console.log("VERIFICATION SUCCESS:", response.data);
